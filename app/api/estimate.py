@@ -8,11 +8,6 @@ import os
 
 router = APIRouter()
 
-@router.get("/test", response_model=dict)
-async def test() :
-    return {"status": "ok", "message": "Send Image to FastAPI successfully"}
-
-
 # Spring Boot => FastAPI MultipartFile(이미지 파일) 전달
 @router.post("/estimate", response_model=dict)
 async def upload_file(files: List[UploadFile] = File(...), filePathList: List[str] = Form(...)) :
@@ -50,7 +45,7 @@ async def upload_file(files: List[UploadFile] = File(...), filePathList: List[st
         
     
     # 서비스 계층 호출
-    estimate_service.estimate_custom_vision(saved_files)
+    response = estimate_service.estimate_custom_vision(saved_files)
     
     # schemas 모델 객체 -> Spring Boot 응답
-    return {"status": "ok", "message": "Send Image to FastAPI successfully"}
+    return response

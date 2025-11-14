@@ -27,6 +27,8 @@ def estimate_custom_vision(saved_files) :
     credentials = ApiKeyCredentials(in_headers={"Prediction-key": prediction_key})
     predictor = CustomVisionPredictionClient(endpoint=prediction_endpoint, credentials=credentials)
     
+    response = {}
+    
     for save_file in saved_files :
 
         # Ex) app/upload/20251114/20251114111219198_08830.jfif
@@ -40,7 +42,9 @@ def estimate_custom_vision(saved_files) :
         # 2) Custom Vision Model Response
         for prediction in results.predictions:
             print(f"Tag: {prediction.tag_name}, Probability: {prediction.probability:.2f}")
-            
+            response[prediction.tag_name] =  prediction.probability
+        
+    return response
         # 3) Calculator Cost
             
     
