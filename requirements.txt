@@ -1,0 +1,5 @@
+azure-cognitiveservices-vision-customvision
+pillow
+matplotlib
+fastapi[all]
+uvicorn[standard]
