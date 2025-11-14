@@ -20,17 +20,6 @@ pipeline {
             }
         }
 
-        stage('Install Python Dependencies (optional)') {
-            steps {
-                // Jenkins 서버에서 테스트 실행 등을 원한다면 사용
-                // Docker 안에서 설치할 거면 생략 가능
-                sh """
-                echo Installing Python packages for validation...
-                pip install -r requirements.txt
-                """
-            }
-        }
-
         stage('Build Docker Image') {
             steps {
                 script {
